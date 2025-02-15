@@ -7,20 +7,20 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Application.Interfaces
+namespace CarBook.Application.Interfaces.Repositories
 {
-    public interface IReadRepository<T> where T : BaseEntity 
+    public interface IReadRepository<T> where T : BaseEntity
     {
-        Task<IList<T>> GetAllAsync(Expression<Func<T,bool>> predicate = null,
-            Func<IQueryable<T>,IIncludableQueryable<T,object>>? include = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy=null ,
+        Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             bool enableTracking = false);
 
 
         Task<IList<T>> GetAllByPagingAsync(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-            bool enableTracking = false , int currentPage = 1, int pageSize= 12);
+            bool enableTracking = false, int currentPage = 1, int pageSize = 12);
 
         Task<T> GetAsync(Expression<Func<T, bool>> predicate,
             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
