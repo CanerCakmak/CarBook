@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.Domain", "Core\CarBook.Domain\CarBook.Domain.csproj", "{78ECCF9F-2029-45AA-B08A-94D5D6155CBF}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.WebApi", "Presentation\CarBook.WebApi\CarBook.WebApi.csproj", "{65A86FF4-9B88-418D-A7CA-0531AE8E729D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.Application", "Core\CarBook.Application\CarBook.Application.csproj", "{EF397E03-256D-4343-AD12-418A8FF6AE37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.CustomMapper", "CarBook.CustomMapper\CarBook.CustomMapper.csproj", "{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EF397E03-256D-4343-AD12-418A8FF6AE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF397E03-256D-4343-AD12-418A8FF6AE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF397E03-256D-4343-AD12-418A8FF6AE37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{4BEE55F5-06C2-4CC1-A46F-416AC8F1DFAF} = {56AE1881-E900-4381-9DE6-D63105E06F7E}
 		{65A86FF4-9B88-418D-A7CA-0531AE8E729D} = {B6135045-64FE-401D-928C-7E6DFB451F21}
 		{EF397E03-256D-4343-AD12-418A8FF6AE37} = {8DC1E50E-929C-4B5D-B42C-463A0CFC4A68}
+		{C3B5B665-89EA-42CC-BAC3-FC17F66ED1E4} = {8DC1E50E-929C-4B5D-B42C-463A0CFC4A68}
 	EndGlobalSection
 EndGlobal

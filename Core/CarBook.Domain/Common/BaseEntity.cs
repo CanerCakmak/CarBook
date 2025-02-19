@@ -13,6 +13,7 @@ namespace CarBook.Domain.Common
 
 
         public bool IsDeleted { get; set; } = false;
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? LastModifiedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

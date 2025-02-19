@@ -15,11 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CarBook.CustomMapper\CarBook.CustomMapper.csproj" />
+    <ProjectReference Include="..\..\Core\CarBook.Application\CarBook.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CarBook.Persistence\CarBook.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
