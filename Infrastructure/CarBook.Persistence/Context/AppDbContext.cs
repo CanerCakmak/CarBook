@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace CarBook.Persistence.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-QIPI316 ; initial catalog = CarBookDb; integrated security = true; TrustServerCertificate = True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-QIPI316 ; initial catalog = CarBookDB; integrated security = true; TrustServerCertificate = True;");
         }
 
         public DbSet<About> Abouts{ get; set; }
@@ -34,19 +35,11 @@ namespace CarBook.Persistence.Context
         public DbSet<Pricing> Pricings { get; set; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
 
 
 

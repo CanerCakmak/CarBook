@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CarBook.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstDbMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,229 +15,242 @@ namespace CarBook.Persistence.Migrations
                 name: "Abouts",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Abouts", x => x.ID);
+                    table.PrimaryKey("PK_Abouts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Banners",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Banners", x => x.ID);
+                    table.PrimaryKey("PK_Banners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BlogCategories",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogCategories", x => x.ID);
+                    table.PrimaryKey("PK_BlogCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Brands",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brands", x => x.ID);
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contacts", x => x.ID);
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Features",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Features", x => x.ID);
+                    table.PrimaryKey("PK_Features", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Footers",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Footers", x => x.ID);
+                    table.PrimaryKey("PK_Footers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Locations", x => x.ID);
+                    table.PrimaryKey("PK_Locations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Pricings",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pricings", x => x.ID);
+                    table.PrimaryKey("PK_Pricings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Services",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IconPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.ID);
+                    table.PrimaryKey("PK_Services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SocialMedias",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IconPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SocialMedias", x => x.ID);
+                    table.PrimaryKey("PK_SocialMedias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Testimonials",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Testimonials", x => x.ID);
+                    table.PrimaryKey("PK_Testimonials", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Cars",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CoverImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mileage = table.Column<int>(type: "int", nullable: false),
@@ -246,21 +259,21 @@ namespace CarBook.Persistence.Migrations
                     Luggage = table.Column<int>(type: "int", nullable: false),
                     Fuel = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BigImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cars", x => x.ID);
+                    table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cars_Brands_BrandID",
-                        column: x => x.BrandID,
+                        name: "FK_Cars_Brands_BrandId",
+                        column: x => x.BrandId,
                         principalTable: "Brands",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -268,23 +281,24 @@ namespace CarBook.Persistence.Migrations
                 name: "CarDescriptions",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarDescriptions", x => x.ID);
+                    table.PrimaryKey("PK_CarDescriptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarDescriptions_Cars_CarID",
-                        column: x => x.CarID,
+                        name: "FK_CarDescriptions_Cars_CarId",
+                        column: x => x.CarId,
                         principalTable: "Cars",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -292,30 +306,31 @@ namespace CarBook.Persistence.Migrations
                 name: "CarFeatures",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Available = table.Column<bool>(type: "bit", nullable: false),
-                    CarID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FeatureID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    FeatureId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarFeatures", x => x.ID);
+                    table.PrimaryKey("PK_CarFeatures", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarFeatures_Cars_CarID",
-                        column: x => x.CarID,
+                        name: "FK_CarFeatures_Cars_CarId",
+                        column: x => x.CarId,
                         principalTable: "Cars",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CarFeatures_Features_FeatureID",
-                        column: x => x.FeatureID,
+                        name: "FK_CarFeatures_Features_FeatureId",
+                        column: x => x.FeatureId,
                         principalTable: "Features",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -323,62 +338,63 @@ namespace CarBook.Persistence.Migrations
                 name: "CarPricings",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CarID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PricingID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CarId = table.Column<int>(type: "int", nullable: false),
+                    PricingId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    DeleteStatus = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarPricings", x => x.ID);
+                    table.PrimaryKey("PK_CarPricings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CarPricings_Cars_CarID",
-                        column: x => x.CarID,
+                        name: "FK_CarPricings_Cars_CarId",
+                        column: x => x.CarId,
                         principalTable: "Cars",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CarPricings_Pricings_PricingID",
-                        column: x => x.PricingID,
+                        name: "FK_CarPricings_Pricings_PricingId",
+                        column: x => x.PricingId,
                         principalTable: "Pricings",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarDescriptions_CarID",
+                name: "IX_CarDescriptions_CarId",
                 table: "CarDescriptions",
-                column: "CarID");
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarFeatures_CarID",
+                name: "IX_CarFeatures_CarId",
                 table: "CarFeatures",
-                column: "CarID");
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarFeatures_FeatureID",
+                name: "IX_CarFeatures_FeatureId",
                 table: "CarFeatures",
-                column: "FeatureID");
+                column: "FeatureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarPricings_CarID",
+                name: "IX_CarPricings_CarId",
                 table: "CarPricings",
-                column: "CarID");
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarPricings_PricingID",
+                name: "IX_CarPricings_PricingId",
                 table: "CarPricings",
-                column: "PricingID");
+                column: "PricingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_BrandID",
+                name: "IX_Cars_BrandId",
                 table: "Cars",
-                column: "BrandID");
+                column: "BrandId");
         }
 
         /// <inheritdoc />

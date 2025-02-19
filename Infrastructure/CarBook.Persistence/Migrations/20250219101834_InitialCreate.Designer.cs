@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBook.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250214202758_FirstDbMigration")]
-    partial class FirstDbMigration
+    [Migration("20250219101834_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,18 +27,20 @@ namespace CarBook.Persistence.Migrations
 
             modelBuilder.Entity("CarBook.Domain.Entities.BlogCategory", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -50,25 +52,27 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("BlogCategories");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Brand", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -80,23 +84,25 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Car", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BigImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("BrandID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CoverImagePath")
                         .IsRequired()
@@ -105,15 +111,15 @@ namespace CarBook.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Fuel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -138,27 +144,26 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BrandID");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.CarDescription", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("CarID")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -167,42 +172,47 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CarID");
+                    b.HasIndex("CarId");
 
                     b.ToTable("CarDescriptions");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.CarFeature", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("CarID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FeatureID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("FeatureId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -210,68 +220,72 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CarID");
+                    b.HasIndex("CarId");
 
-                    b.HasIndex("FeatureID");
+                    b.HasIndex("FeatureId");
 
                     b.ToTable("CarFeatures");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.CarPricing", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("CarID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("PricingID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PricingId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CarID");
+                    b.HasIndex("CarId");
 
-                    b.HasIndex("PricingID");
+                    b.HasIndex("PricingId");
 
                     b.ToTable("CarPricings");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Feature", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -283,25 +297,27 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Features");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Location", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -313,25 +329,27 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("CarBook.Domain.Entities.Pricing", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -343,22 +361,21 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Pricings");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.About", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -371,6 +388,9 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -381,22 +401,21 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.Banner", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -404,6 +423,9 @@ namespace CarBook.Persistence.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -423,22 +445,21 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.Contact", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -446,6 +467,9 @@ namespace CarBook.Persistence.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -465,16 +489,18 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.Footer", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -482,9 +508,6 @@ namespace CarBook.Persistence.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -497,6 +520,9 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -507,22 +533,21 @@ namespace CarBook.Persistence.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Footers");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.Service", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -535,6 +560,9 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -545,22 +573,21 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Services");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.SocialMedia", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
@@ -568,6 +595,9 @@ namespace CarBook.Persistence.Migrations
                     b.Property<string>("IconPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -583,16 +613,18 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("CarBook.Domain.MainPage.Testimonial", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -601,15 +633,15 @@ namespace CarBook.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteStatus")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -625,7 +657,7 @@ namespace CarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Testimonials");
                 });
@@ -634,7 +666,7 @@ namespace CarBook.Persistence.Migrations
                 {
                     b.HasOne("CarBook.Domain.Entities.Brand", "Brand")
                         .WithMany("Cars")
-                        .HasForeignKey("BrandID")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -645,7 +677,7 @@ namespace CarBook.Persistence.Migrations
                 {
                     b.HasOne("CarBook.Domain.Entities.Car", "Car")
                         .WithMany("CarDescriptions")
-                        .HasForeignKey("CarID")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -656,13 +688,13 @@ namespace CarBook.Persistence.Migrations
                 {
                     b.HasOne("CarBook.Domain.Entities.Car", "Car")
                         .WithMany("CarFeatures")
-                        .HasForeignKey("CarID")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CarBook.Domain.Entities.Feature", "Feature")
                         .WithMany("CarFeatures")
-                        .HasForeignKey("FeatureID")
+                        .HasForeignKey("FeatureId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -675,13 +707,13 @@ namespace CarBook.Persistence.Migrations
                 {
                     b.HasOne("CarBook.Domain.Entities.Car", "Car")
                         .WithMany("CarPricings")
-                        .HasForeignKey("CarID")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CarBook.Domain.Entities.Pricing", "Pricing")
                         .WithMany("CarPricings")
-                        .HasForeignKey("PricingID")
+                        .HasForeignKey("PricingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

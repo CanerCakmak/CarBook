@@ -12,9 +12,9 @@ namespace CarBook.Domain.Entities
         public decimal Amount { get; set; }
 
 
-        public Guid CarID { get; set; }
+        public int CarId { get; set; }
         public Car Car { get; set; }
-        public Guid PricingID { get; set; }
+        public int PricingId { get; set; }
         public Pricing Pricing { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace CarBook.Domain.Entities
         public bool Available { get; set; }
 
 
-        public Guid CarID { get; set; }
+        public int CarId { get; set; }
         public Car Car { get; set; }
-        public Guid FeatureID { get; set; }
+        public int FeatureId { get; set; }
         public Feature Feature { get; set; }
     }
 }
