@@ -20,7 +20,7 @@ namespace CarBook.Domain.Entities
 
 
 
-        public Guid BrandID { get; set; }
+        public int BrandId { get; set; }
         public Brand Brand { get; set; }
 
         public ICollection<CarPricing> CarPricings { get; set; }
