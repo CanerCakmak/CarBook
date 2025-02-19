@@ -7,11 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CarBook.Domain\CarBook.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Template\Commands\" />
+    <Folder Include="Features\Template\Queries\" />
+    <Folder Include="Features\Abouts\Commands\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 
 </Project>

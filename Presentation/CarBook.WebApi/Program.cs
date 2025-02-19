@@ -1,6 +1,10 @@
 using CarBook.Application.Interfaces.Repositories;
 using CarBook.Application.Interfaces.UnitOfWorks;
+
+using CarBook.Application;
 using CarBook.Persistence;
+using CarBook.CustomMapper;
+
 using CarBook.Persistence.Context;
 using CarBook.Persistence.Repositories;
 using CarBook.Persistence.UnitOfWorks;
@@ -15,7 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>();
+
 //builder.Services.AddPersistence();
+builder.Services.AddApplication();
+builder.Services.AddCustomMapper();
 
 builder.Services.AddScoped(typeof(IReadRepository<>),typeof(ReadRepository<>));
 builder.Services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));

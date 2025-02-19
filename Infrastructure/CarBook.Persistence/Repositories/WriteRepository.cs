@@ -28,7 +28,8 @@ namespace CarBook.Persistence.Repositories
 
         public async Task<T> UpdateAsync(T entity)
         {
-           await Task.Run(() => Table.Update(entity));
+            entity.LastModifiedAt = DateTime.Now;
+            await Task.Run(() => Table.Update(entity));
             return entity;
         }
         public async Task HardDelete(T entity)
@@ -51,6 +52,7 @@ namespace CarBook.Persistence.Repositories
             if (entity is not null)
             {
                 entity.IsDeleted = true;
+                entity.DeletedAt = DateTime.Now;
                 await Task.Run(() => Table.Update(entity));
             }
         }
@@ -61,6 +63,7 @@ namespace CarBook.Persistence.Repositories
             if (entity != null)
             {
                 entity.IsDeleted = true;
+                entity.DeletedAt = DateTime.Now;
                 await Task.Run(() => Table.Update(entity));
             }
         }
