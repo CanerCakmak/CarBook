@@ -32,22 +32,7 @@ namespace CarBook.Persistence.Repositories
             await Task.Run(() => Table.Update(entity));
             return entity;
         }
-        public async Task HardDelete(T entity)
-        {
-            await Task.Run(() => Table.Remove(entity));
-        }
-
-        public async Task HardDeleteById(Guid id)
-        {
-            var entity = await Table.FindAsync(id);
-            if (entity != null)
-            {
-                Table.Remove(entity);
-                await _appDbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task SoftDelete(T entity)
+        public async Task SoftDeleteAsync(T entity)
         {
             if (entity is not null)
             {
@@ -57,7 +42,7 @@ namespace CarBook.Persistence.Repositories
             }
         }
 
-        public async Task SoftDeleteById(Guid id)
+        public async Task SoftDeleteByIdAsync(int id)
         {
             var entity = await Table.FindAsync(id);
             if (entity != null)
@@ -67,6 +52,40 @@ namespace CarBook.Persistence.Repositories
                 await Task.Run(() => Table.Update(entity));
             }
         }
+        public async Task SoftDeleteRangeAsync(IList<T> entities)
+        {
+            if (entities.Any())
+            {
+                foreach (var entity in entities)
+                {
+                    entity.IsDeleted = true;
+                    entity.DeletedAt = DateTime.Now;
+                }
+
+                await Task.Run(() => Table.UpdateRange(entities));
+            }
+        }
+
+        public async Task HardDeleteAsync(T entity)
+        {
+            await Task.Run(() => Table.Remove(entity));
+        }
+
+        public async Task HardDeleteByIdAsync(int id)
+        {
+            var entity = await Table.FindAsync(id);
+            if (entity != null)
+            {
+                Table.Remove(entity);
+                await _appDbContext.SaveChangesAsync();
+            }
+        }
+        public async Task HardDeleteRangeAsync(IList<T> entities)
+        {
+            await Task.Run(() => Table.RemoveRange(entities));
+        }
+
+        
 
         
     }

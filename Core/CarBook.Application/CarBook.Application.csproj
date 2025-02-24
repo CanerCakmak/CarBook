@@ -16,10 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Template\Commands\" />
-    <Folder Include="Features\Template\Queries\" />
-    <Folder Include="Features\Abouts\Commands\" />
+    <Folder Include="Features\Template\Commands\Create\" />
+    <Folder Include="Features\Template\Commands\Delete\" />
+    <Folder Include="Features\Template\Commands\Update\" />
+    <Folder Include="Features\Template\Commands\Remove\" />
     <Folder Include="DTOs\" />
+    <Folder Include="Features\Template\Queries\GetAll\" />
+    <Folder Include="Features\Template\Queries\GetById\" />
   </ItemGroup>
 
 </Project>

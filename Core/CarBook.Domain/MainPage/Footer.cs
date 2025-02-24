@@ -9,6 +9,17 @@ namespace CarBook.Domain.MainPage
 {
     public class Footer : BaseEntity
     {
+        public Footer()
+        {
+               
+        }
+        public Footer(string detail,string address, string phoneNumber, string email)
+        {
+            Detail = detail;
+            Address = address;
+            PhoneNumber = phoneNumber;
+            Email = email;
+        }
         public string Detail{ get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
