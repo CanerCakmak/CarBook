@@ -14,11 +14,13 @@ namespace CarBook.Application.Interfaces.Repositories
 
         Task<T> UpdateAsync(T entity);
 
-        Task SoftDeleteById(Guid id);
-        Task SoftDelete(T entity);
+        Task SoftDeleteByIdAsync(int id);
+        Task SoftDeleteAsync(T entity);
+        Task SoftDeleteRangeAsync(IList<T> entities);
 
-        Task HardDeleteById(Guid id);
-        Task HardDelete(T entity);
+        Task HardDeleteByIdAsync(int id);
+        Task HardDeleteAsync(T entity);
+        Task HardDeleteRangeAsync(IList<T> entities);
 
 
     }

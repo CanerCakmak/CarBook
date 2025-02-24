@@ -23,9 +23,9 @@ namespace CarBook.Application.Features.Abouts.Queries.GetAboutById
 
         public async Task<GetAboutByIdQueryResponse> Handle(GetAboutByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var about = await _unitOfWork.GetReadRepository<About>().GetAsync(x => x.Id == request.Id);
+            var about = await _unitOfWork.GetReadRepository<About>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
 
-            var map = _customMapper.Map<GetAboutByIdQueryResponse>(about);
+            var map = _customMapper.Map<GetAboutByIdQueryResponse,About>(about);
 
             return map;
         }
