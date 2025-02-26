@@ -39,28 +39,28 @@ namespace CarBook.WebApi.Controllers
         {
             await _mediator.Send(request);
 
-            return Ok("Hakkında Başarıyla Eklendi");
+            return Ok("Referans Başarıyla Eklendi");
         }
         [HttpPut]
         public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialCommandRequest request)
         {
             await _mediator.Send(request);
 
-            return Ok("Hakkında Başarıyla Düzenlendi");
+            return Ok("Referans Başarıyla Düzenlendi");
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteTestimonial(DeleteTestimonialCommandRequest request)
         {
             await _mediator.Send(request);
 
-            return Ok("Hakkında Başarıyla Silindi");
+            return Ok("Referans Başarıyla Silindi");
         }
         [HttpDelete]
         public async Task<IActionResult> RemoveTestimonial(RemoveTestimonialCommandRequest request)
         {
             await _mediator.Send(request);
 
-            return Ok("Hakkında Başarıyla Sistemden Silindi");
+            return Ok("Referans Başarıyla Sistemden Silindi");
         }
 
     }

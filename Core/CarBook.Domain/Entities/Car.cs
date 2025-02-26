@@ -9,6 +9,22 @@ namespace CarBook.Domain.Entities
 {
     public class Car : BaseEntity
     {
+        public Car()
+        {
+            
+        }
+        public Car(string Model, string CoverImagePath, int Mileage, string Transmission, int SeatCount, int Luggage, string Fuel, string BigImagePath, int BrandId)
+        {
+            this.Model = Model;
+            this.CoverImagePath = CoverImagePath;
+            this.Mileage = Mileage;
+            this.Transmission = Transmission;
+            this.SeatCount = SeatCount;
+            this.Luggage = Luggage;
+            this.Fuel = Fuel;
+            this.BigImagePath = BigImagePath;
+            this.BrandId = BrandId;
+        }
         public string Model { get; set; }
         public string CoverImagePath { get; set; }
         public int Mileage { get; set; }
