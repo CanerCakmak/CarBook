@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Application.Features.Services.Queries.GetServiceById
+namespace CarBook.Application.Features.Cars.Commands.RemoveCar
 {
-    public class GetServiceByIdQueryRequest: IRequest<GetServiceByIdQueryResponse>
+    public class RemoveCarCommandRequest : IRequest
     {
         public int Id { get; set; }
 
-        public GetServiceByIdQueryRequest(int id)
+        public RemoveCarCommandRequest(int id)
         {
             Id = id;
         }
