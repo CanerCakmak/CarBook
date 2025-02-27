@@ -7,6 +7,7 @@ using CarBook.Application.Features.Cars.Queries.GetAllCarsWithBrand;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using CarBook.Application.Features.Brands.Commands.CreateBrand;
+using CarBook.Application.Features.Cars.Queries.GetCarsWithBrandByCount;
 
 namespace CarBook.WebApi.Controllers
 {
@@ -25,6 +26,12 @@ namespace CarBook.WebApi.Controllers
         public async Task<IActionResult> GetAllCarsWithBrand()
         {
             var response = await _mediator.Send(new GetAllCarsWithBrandQueryRequest());
+            return Ok(response);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCarsWithBrandByCount(int count =12)
+        {
+            var response = await _mediator.Send(new GetCarsWithBrandByCountQueryRequest(count));
             return Ok(response);
         }
 

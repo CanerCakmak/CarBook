@@ -9,7 +9,6 @@ namespace CarBook.Domain.MainPage
 {
     public class About : BaseEntity
     {
-        
 
         public About()
         {
