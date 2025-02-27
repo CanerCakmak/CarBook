@@ -22,6 +22,9 @@ namespace CarBook.Persistence.Configurations
                 .WithMany(c => c.CarPricings)
                 .HasForeignKey(cp => cp.PricingId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasIndex(cp => new { cp.CarId, cp.PricingId })
+            .IsUnique();
         }
     }
 }

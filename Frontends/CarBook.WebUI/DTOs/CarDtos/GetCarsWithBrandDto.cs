@@ -2,7 +2,7 @@
 
 namespace CarBook.WebUI.DTOs.CarDtos
 {
-    public class GetAllCarsWithBrandDto
+    public class GetCarsWithBrandDto
     {
         public string Model { get; set; }
         public string CoverImagePath { get; set; }

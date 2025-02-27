@@ -11,9 +11,8 @@ namespace CarBook.WebUI.ViewComponents.ServiceViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var services = await _httpClient.GetFromJsonAsync<IList<ServiceDtoResponse>>("Services/GetAllServices");
-            
-            var service = services.FirstOrDefault();
-            return View(service);
+
+            return View(services);
         }
     }
 }

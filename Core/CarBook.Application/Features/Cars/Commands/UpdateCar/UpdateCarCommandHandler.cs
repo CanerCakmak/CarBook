@@ -30,6 +30,8 @@ namespace CarBook.Application.Features.Cars.Commands.UpdateCar
                 var map = _customMapper.Map<Car, UpdateCarCommandRequest>(request);
 
                 await _unitOfWork.GetWriteRepository<Car>().UpdateAsync(map);
+
+                await _unitOfWork.SaveAsync();
             }
         }
     }

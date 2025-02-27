@@ -9,8 +9,7 @@ namespace CarBook.Domain.Common
     public class BaseEntity
     {
         public int Id{ get; set; }
-        public bool Status { get; set; }
-
+        public bool Status { get; set; } = false;
 
         public bool IsDeleted { get; set; } = false;
 

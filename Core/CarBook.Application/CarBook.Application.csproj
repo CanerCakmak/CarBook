@@ -18,8 +18,8 @@
   <ItemGroup>
     <Folder Include="Features\Template\Commands\Create\" />
     <Folder Include="Features\Template\Commands\Delete\" />
-    <Folder Include="Features\Template\Commands\Update\" />
     <Folder Include="Features\Template\Commands\Remove\" />
+    <Folder Include="Features\Template\Commands\Update\" />
     <Folder Include="Features\Template\Queries\GetAll\" />
     <Folder Include="Features\Template\Queries\GetById\" />
   </ItemGroup>

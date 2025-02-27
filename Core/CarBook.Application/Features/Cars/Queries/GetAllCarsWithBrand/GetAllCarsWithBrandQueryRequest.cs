@@ -9,5 +9,6 @@ namespace CarBook.Application.Features.Cars.Queries.GetAllCarsWithBrand
 {
     public class GetAllCarsWithBrandQueryRequest : IRequest<IList<GetAllCarsWithBrandQueryResponse>>
     {
+        
     }
 }
