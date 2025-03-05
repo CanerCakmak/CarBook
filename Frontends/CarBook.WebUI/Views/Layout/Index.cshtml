@@ -8,6 +8,7 @@
 <html>
 <head>
     @await Component.InvokeAsync("_HeadLayoutComponentPartial")
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     @await Component.InvokeAsync("_NavbarLayoutComponentPartial")
@@ -20,5 +21,7 @@
     @await Component.InvokeAsync("_FooterLayoutComponentPartial")
 
     @await Component.InvokeAsync("_ScriptLayoutComponentPartial")
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

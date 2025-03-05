@@ -9,7 +9,7 @@ namespace CarBook.Application.Features.Authors.Commands.CreateAuthor
 {
     public class CreateAuthorCommandRequest : IRequest
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
     }

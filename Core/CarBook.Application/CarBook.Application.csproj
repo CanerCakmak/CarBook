@@ -16,6 +16,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\CarPrices\Commands\DeleteCarPrice\" />
+    <Folder Include="Features\CarPrices\Commands\RemoveCarPrice\" />
+    <Folder Include="Features\CarPrices\Commands\UpdateCarPrice\" />
+    <Folder Include="Features\CarPrices\Queries\GetAllCarPrices\" />
+    <Folder Include="Features\CarPrices\Queries\GetCarPriceById\" />
+    <Folder Include="Features\Prices\Commands\DeletePrice\" />
+    <Folder Include="Features\Prices\Commands\RemovePrice\" />
+    <Folder Include="Features\Prices\Commands\UpdatePrice\" />
+    <Folder Include="Features\Prices\Queries\GetPriceById\" />
     <Folder Include="Features\Template\Commands\Create\" />
     <Folder Include="Features\Template\Commands\Delete\" />
     <Folder Include="Features\Template\Commands\Remove\" />

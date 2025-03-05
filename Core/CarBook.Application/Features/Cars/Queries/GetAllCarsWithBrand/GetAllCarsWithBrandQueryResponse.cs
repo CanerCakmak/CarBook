@@ -10,6 +10,7 @@ namespace CarBook.Application.Features.Cars.Queries.GetAllCarsWithBrand
 {
     public class GetAllCarsWithBrandQueryResponse
     {
+        public int Id { get; set; }
         public string Model { get; set; }
         public string CoverImagePath { get; set; }
         public int Mileage { get; set; }
@@ -19,5 +20,6 @@ namespace CarBook.Application.Features.Cars.Queries.GetAllCarsWithBrand
         public string Fuel { get; set; }
         public string BigImagePath { get; set; }
         public BrandDto Brand { get; set; }
+
     }
 }

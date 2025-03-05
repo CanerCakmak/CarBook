@@ -1,4 +1,5 @@
-﻿using CarBook.WebUI.DTOs.CarDtos;
+﻿using CarBook.Application.Features.Cars.Queries.GetCarsWithBrandByCount;
+using CarBook.WebUI.DTOs.CarDtos;
 using CarBook.WebUI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace CarBook.WebUI.ViewComponents.HomeViewComponents
         private readonly HttpClient _httpClient = HttpClientInstance.CreateClient();
         public async Task<IViewComponentResult> InvokeAsync(int count = 5)
         {
-            var values = await _httpClient.GetFromJsonAsync<IList<GetCarsWithBrandDto>>($"Cars/GetCarsWithBrandByCount?count={count}");
+            var values = await _httpClient.GetFromJsonAsync<IList<GetCarsWithBrandByCountQueryResponse>>($"Cars/GetCarsWithBrandByCount?count={count}");
+
 
             return View(values);
         }

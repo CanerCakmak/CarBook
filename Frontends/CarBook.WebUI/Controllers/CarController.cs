@@ -1,4 +1,5 @@
-﻿using CarBook.WebUI.DTOs.CarDtos;
+﻿using CarBook.Application.Features.Cars.Queries.GetAllCarsWithPriceAndBrand;
+using CarBook.WebUI.DTOs.CarDtos;
 using CarBook.WebUI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,10 @@ namespace CarBook.WebUI.Controllers
         private readonly HttpClient _httpClient = HttpClientInstance.CreateClient();
         public async Task<IActionResult> Index()
         {
-            var values = await _httpClient.GetFromJsonAsync<IList<GetAllCarsWithBrandDto>>("Cars/GetAllCarsWithBrand");
+            ViewBag.ParentPage = "Araçlar";
+            ViewBag.CurrentPage = "Araçlar";
+
+            var values = await _httpClient.GetFromJsonAsync<IList<GetAllCarsWithPriceAndBrandQueryResponse>>("Cars/GetAllCarsWithPriceAndBrand");
 
             return View(values);
         }

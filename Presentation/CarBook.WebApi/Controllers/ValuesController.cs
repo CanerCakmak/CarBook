@@ -4,6 +4,7 @@ using CarBook.Application.Features.Abouts.Commands.RemoveAbout;
 using CarBook.Application.Features.Abouts.Commands.UpdateAbout;
 using CarBook.Application.Features.Abouts.Queries.GetAboutById;
 using CarBook.Application.Features.Abouts.Queries.GetAllAbouts;
+using CarBook.Application.Features.CarPrices.Queries.GetAllCarPricesWithCar;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,47 +23,12 @@ namespace CarBook.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAbouts()
+        public async Task<IActionResult> GetAllPricesWithCar()
         {
-            var response = await _mediator.Send(new GetAllAboutsQueryRequest());
+            var response = await _mediator.Send(new GetAllCarPricesWithCarQueryRequest());
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAboutByID(int id)
-        {
-            var response = await _mediator.Send(new GetAboutByIdQueryRequest(id));
-
-            return Ok(response);
-        }
-        [HttpPost]
-        public async Task<IActionResult> CreateAbout(CreateAboutCommandRequest request)
-        {
-            await _mediator.Send(request);
-
-            return Ok("Hakkında Başarıyla Eklendi");
-        }
-        [HttpPut]
-        public async Task<IActionResult> UpdateAbout(UpdateAboutCommandRequest request)
-        {
-            await _mediator.Send(request);
-
-            return Ok("Hakkında Başarıyla Düzenlendi");
-        }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAbout(DeleteAboutCommandRequest request)
-        {
-            await _mediator.Send(request);
-
-            return Ok("Hakkında Başarıyla Silindi");
-        }
-        [HttpDelete]
-        public async Task<IActionResult> RemoveAbout(RemoveAboutCommandRequest request)
-        {
-            await _mediator.Send(request);
-
-            return Ok("Hakkında Başarıyla Sistemden Silindi");
-        }
 
     }
 }

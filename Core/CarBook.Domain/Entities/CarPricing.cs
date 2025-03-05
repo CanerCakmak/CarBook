@@ -9,6 +9,16 @@ namespace CarBook.Domain.Entities
 {
     public class CarPricing : BaseEntity
     {
+        public CarPricing()
+        {
+            
+        }
+        public CarPricing(decimal Amount, int CarId, int PricingId)
+        {
+            this.Amount = Amount;
+            this.CarId = CarId;
+            this.PricingId = PricingId;
+        }
         public decimal Amount { get; set; }
 
 

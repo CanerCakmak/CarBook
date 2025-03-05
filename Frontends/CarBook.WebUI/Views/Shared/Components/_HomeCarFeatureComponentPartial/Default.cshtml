@@ -1,4 +1,5 @@
-﻿@model IList<GetCarsWithBrandDto>
+﻿@using CarBook.Application.Features.Cars.Queries.GetCarsWithBrandByCount
+@model IList<GetCarsWithBrandByCountQueryResponse>
 
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
@@ -21,7 +22,12 @@
                                     <h2 class="mb-0"><a href="#">@item.Model</a></h2>
                                     <div class="d-flex mb-3">
                                         <span class="cat">@item.Brand.Name</span>
-                                        <p class="price ml-auto">$500 <span>/day</span></p>
+                                        <select class="form-control ml-auto">
+                                            @foreach (var cp in item.CarPricings)
+                                            {
+                                                <option value="@cp.Amount">$@cp.Amount / @cp.Pricing.Name</option>
+                                            }
+                                        </select>
                                     </div>
                                     <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Şimdi Kirala</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
                                 </div>

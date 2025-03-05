@@ -12,6 +12,7 @@ namespace CarBook.Application.Features.Blogs.Commands.UpdateBlog
         public int Id { get; set; }
         public string Title { get; set; }
         public string CoverImagePath { get; set; }
+        public string Description { get; set; }
         public int AuthorId { get; set; }
 
         public IList<int> CategoryIds { get; set; }

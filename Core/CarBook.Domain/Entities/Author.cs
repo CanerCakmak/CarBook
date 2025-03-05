@@ -13,13 +13,13 @@ namespace CarBook.Domain.Entities
         {
             
         }
-        public Author(int Name, string ImagePath, string Description)
+        public Author(string Name, string ImagePath, string Description)
         {
             this.Name = Name;
             this.ImagePath = ImagePath;
             this.Description = Description;
         }
-        public int Name { get; set; }
+        public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
 

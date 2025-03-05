@@ -9,6 +9,14 @@ namespace CarBook.Domain.Entities
 {
     public class Pricing : BaseEntity
     {
+        public Pricing()
+        {
+            
+        }
+        public Pricing(string Name)
+        {
+            this.Name = Name;
+        }
         public string Name { get; set; }
 
         public ICollection<CarPricing> CarPricings { get; set; }
