@@ -10,7 +10,7 @@ namespace CarBook.Application.Features.Authors.Commands.UpdateAuthor
     public class UpdateAuthorCommandRequest : IRequest
     {
         public int Id { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
     }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Application.Features.Blogs.Queries.GetBlogById
+namespace CarBook.Application.DTOs.PricingDtos
 {
-    internal class GetBlogByIdQueryRequest
+    public class PricingDto
     {
+        public string Name { get; set; }
     }
 }

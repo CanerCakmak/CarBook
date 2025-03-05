@@ -23,7 +23,7 @@ namespace CarBook.Application.Features.Blogs.Commands.CreateBlog
 
         public async Task Handle(CreateBlogCommandRequest request, CancellationToken cancellationToken)
         {
-            Blog blog = new(request.Title, request.CoverImagePath, request.AuthorId);
+            Blog blog = new(request.Title, request.CoverImagePath,request.Description, request.AuthorId);
 
             await _unitOfWork.GetWriteRepository<Blog>().AddAsync(blog);
 

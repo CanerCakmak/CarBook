@@ -1,4 +1,6 @@
 ﻿using CarBook.Application.DTOs.BrandDtos;
+using CarBook.Application.DTOs.CarPricingDto;
+using CarBook.Application.DTOs.PricingDtos;
 using CarBook.Application.Interfaces.AutoMapper;
 using CarBook.Application.Interfaces.UnitOfWorks;
 using CarBook.Domain.Entities;
@@ -28,13 +30,15 @@ namespace CarBook.Application.Features.Cars.Queries.GetCarsWithBrandByCount
             var cars = await _unitOfWork.GetReadRepository<Car>()
                 .GetAllByPagingAsync(
                     predicate: x => !x.IsDeleted,
-                    include: x => x.Include(c => c.Brand),
+                    include: x => x.Include(c => c.Brand).Include(c => c.CarPricings).ThenInclude(cp => cp.Pricing),
                     orderBy: x => x.OrderByDescending(c => c.CreatedAt),
                     currentPage: 1,
                     pageSize: request.Count
                 );
 
-            var brand = _customMapper.Map<BrandDto, Brand>(new Brand());
+            var brandmap = _customMapper.Map<BrandDto, Brand>(new Brand());
+            var cpmap = _customMapper.Map<CarPricingDto, CarPricing>(new CarPricing());
+            var pricingmap = _customMapper.Map<PricingDto, Pricing>(new Pricing());
 
             var map = _customMapper.Map<GetCarsWithBrandByCountQueryResponse , Car>(cars);
 

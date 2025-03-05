@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Application.Features.Authors.Queries.GetAuthorById
+namespace CarBook.Application.Features.Authors.Queries.GetAllAuthors
 {
-    public class GetAuthorByIdQueryResponse
+    public class GetAllAuthorsQueryResponse
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
     }

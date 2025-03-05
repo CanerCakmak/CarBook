@@ -10,6 +10,9 @@ namespace CarBook.WebUI.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.ParentPage = "İletişim";
+            ViewBag.CurrentPage = "İletişim";
+
             return View();
         }
         [HttpPost]

@@ -11,6 +11,7 @@ namespace CarBook.Application.Features.Blogs.Commands.CreateBlog
     {
         public string Title { get; set; }
         public string CoverImagePath { get; set; }
+        public string Description { get; set; }
 
 
         public int AuthorId { get; set; }

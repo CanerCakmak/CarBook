@@ -8,6 +8,9 @@ namespace CarBook.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.ParentPage = "Hizmetler";
+            ViewBag.CurrentPage = "Hizmetlerimiz";
+
             return View();
         }
     }
