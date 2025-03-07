@@ -1,4 +1,5 @@
-﻿using CarBook.Application.Beheviors;
+﻿using CarBook.Application.Bases;
+using CarBook.Application.Beheviors;
 using CarBook.Application.Exceptions;
 using FluentValidation;
 using MediatR;
@@ -20,6 +21,8 @@ namespace CarBook.Application
 
             services.AddTransient<ExceptionMiddleware>();
 
+            services.AddRulesFromAssemblyContaining(assembly, typeof(BaseRules));
+
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
 
             services.AddValidatorsFromAssembly(assembly);
@@ -28,5 +31,17 @@ namespace CarBook.Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>) , typeof(FluentValidationBehevior<,>));
         }
+
+        private static IServiceCollection AddRulesFromAssemblyContaining(this IServiceCollection services, Assembly assembly, Type type)
+        {
+            var types = assembly.GetTypes().Where(t=> t.IsSubclassOf(type) && type !=t).ToList();
+
+            foreach (var t in types)
+                services.AddTransient(t);
+
+            return services;
+        }
+
+
     }
 }
