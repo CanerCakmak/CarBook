@@ -1,4 +1,7 @@
-﻿using CarBook.Application.Exceptions;
+﻿using CarBook.Application.Beheviors;
+using CarBook.Application.Exceptions;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,7 +20,13 @@ namespace CarBook.Application
 
             services.AddTransient<ExceptionMiddleware>();
 
-            services.AddMediatR(cfg =>cfg.RegisterServicesFromAssembly(assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+
+            services.AddValidatorsFromAssembly(assembly);
+
+            ValidatorOptions.Global.LanguageManager.Culture = new System.Globalization.CultureInfo("tr");
+
+            services.AddTransient(typeof(IPipelineBehavior<,>) , typeof(FluentValidationBehevior<,>));
         }
     }
 }
