@@ -9,6 +9,7 @@ using CarBook.Persistence.Context;
 using CarBook.Persistence.Repositories;
 using CarBook.Persistence.UnitOfWorks;
 using CarBook.Application.Exceptions;
+using CarBook.Domain.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,14 +22,24 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>();
 
+builder.Services.AddIdentityCore<User>(opt =>
+{
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 2;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireDigit = false;
+    opt.SignIn.RequireConfirmedEmail = false;
+}).AddRoles<Role>().AddEntityFrameworkStores<AppDbContext>();
+
 //builder.Services.AddPersistence();
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
 
-builder.Services.AddScoped(typeof(IReadRepository<>),typeof(ReadRepository<>));
+builder.Services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
 builder.Services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
-builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
