@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarBook.Application.Features.Abouts.Commands.CreateAbout
 {
-    public class CreateAboutCommandRequest : IRequest
+    public class CreateAboutCommandRequest : IRequest<Unit>
     {
         public string Title { get; set; }
         public string Description { get; set; }
