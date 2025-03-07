@@ -22,7 +22,7 @@ namespace CarBook.Application.Features.Abouts.Queries.GetAllAbouts
         }
         public async Task<IList<GetAllAboutsQueryResponse>> Handle(GetAllAboutsQueryRequest request, CancellationToken cancellationToken)
         {
-            var abouts = await unitOfWork.GetReadRepository<About>().GetAllAsync();
+            var abouts = await unitOfWork.GetReadRepository<About>().GetAllAsync(x=> !x.IsDeleted);
 
             var map = customMapper.Map<GetAllAboutsQueryResponse,About>(abouts);
 
