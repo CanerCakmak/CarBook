@@ -43,8 +43,7 @@ namespace CarBook.Application.Exceptions
 
             List<string> errors = new List<string>()
             {
-                $"Hata Mesajı :{exception.Message}",
-                $"Hata Mesajı Açıklama: {exception.InnerException?.ToString()}"
+                $"Hata Mesajı :{exception.Message}"
             };
 
             return httpcontext.Response.WriteAsync(new ExceptionModel
