@@ -5,12 +5,14 @@ using CarBook.Application.Features.Abouts.Commands.UpdateAbout;
 using CarBook.Application.Features.Abouts.Queries.GetAboutById;
 using CarBook.Application.Features.Abouts.Queries.GetAllAbouts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class AboutsController : Controller
     {
         private readonly IMediator _mediator;
