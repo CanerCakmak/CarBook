@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Auth\Queries\" />
     <Folder Include="Features\CarPrices\Commands\DeleteCarPrice\" />
     <Folder Include="Features\CarPrices\Commands\RemoveCarPrice\" />
     <Folder Include="Features\CarPrices\Commands\UpdateCarPrice\" />

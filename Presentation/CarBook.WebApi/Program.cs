@@ -49,6 +49,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddPersistence();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
