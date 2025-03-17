@@ -15,6 +15,6 @@ namespace CarBook.Application.Interfaces.Tokens
 
         string GenerateRefreshToken();
 
-        ClaimsPrincipal? GetPrincipalFromExpiredToken();
+        ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token);
     }
 }
