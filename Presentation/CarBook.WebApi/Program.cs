@@ -11,6 +11,7 @@ using CarBook.Persistence.Repositories;
 using CarBook.Persistence.UnitOfWorks;
 using CarBook.Application.Exceptions;
 using CarBook.Domain.Identity;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,12 +20,40 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CarBook API", Version = "v1", Description = "Caner Çakmak ben frontu yapmadým ama back yaptým yeter heralde" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "'Bearer' yazýp boþluk býraktýktan sonra tokeninizi yazabilirsiniz \r\n\r\n  Örnek Olarak: \"Bearer 38lXdSbbmyuTkDkZ"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id= "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 builder.Services.AddPersistence();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
+
 
 
 builder.Services.AddHttpClient("ApiClient", client =>
@@ -49,12 +78,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else {
+else
+{
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-    app.ConfigureExceptionHandlingMiddleware();
+app.ConfigureExceptionHandlingMiddleware();
 
 app.UseHttpsRedirection();
 
