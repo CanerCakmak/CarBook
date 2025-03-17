@@ -1,4 +1,9 @@
-﻿using CarBook.Persistence.Context;
+﻿using CarBook.Application.Interfaces.Repositories;
+using CarBook.Application.Interfaces.UnitOfWorks;
+using CarBook.Domain.Identity;
+using CarBook.Persistence.Context;
+using CarBook.Persistence.Repositories;
+using CarBook.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,11 +20,21 @@ namespace CarBook.Persistence
     {
         public static void AddPersistence(this IServiceCollection services) 
         {
-            //services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer("Server=DESKTOP-QIPI316 ; initial catalog = CarBookDb; integrated security = true; TrustServerCertificate = True;"));
-            
+            services.AddDbContext<AppDbContext>();
 
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 2;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireDigit = false;
+                opt.SignIn.RequireConfirmedEmail = false;
+            }).AddRoles<Role>().AddEntityFrameworkStores<AppDbContext>();
         }
 
     }
