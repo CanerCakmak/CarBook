@@ -3,6 +3,7 @@ using CarBook.Application.Interfaces.UnitOfWorks;
 
 using CarBook.Application;
 using CarBook.Persistence;
+using CarBook.Infrastructure;
 using CarBook.CustomMapper;
 
 using CarBook.Persistence.Context;
@@ -20,26 +21,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>();
-
-builder.Services.AddIdentityCore<User>(opt =>
-{
-    opt.Password.RequireNonAlphanumeric = false;
-    opt.Password.RequiredLength = 2;
-    opt.Password.RequireLowercase = false;
-    opt.Password.RequireUppercase = false;
-    opt.Password.RequireDigit = false;
-    opt.SignIn.RequireConfirmedEmail = false;
-}).AddRoles<Role>().AddEntityFrameworkStores<AppDbContext>();
-
-//builder.Services.AddPersistence();
+builder.Services.AddPersistence();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
 
-builder.Services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
-builder.Services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddHttpClient("ApiClient", client =>
+{
+    var apiUrl = builder.Configuration["ApiSettings:BaseUrl"];
+    client.BaseAddress = new Uri(apiUrl);
+});
+
+
+var env = builder.Environment;
+
+builder.Configuration
+    .SetBasePath(env.ContentRootPath)
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
 var app = builder.Build();
 
@@ -49,8 +49,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-app.ConfigureExceptionHandlingMiddleware();
+    app.ConfigureExceptionHandlingMiddleware();
 
 app.UseHttpsRedirection();
 
